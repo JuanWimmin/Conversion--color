@@ -1,0 +1,57 @@
+---
+config:
+  layout: fixed
+---
+flowchart TD
+ subgraph subGraph0["Funciones Auxiliares"]
+        BB{"0 ≤ value &lt; 10?"}
+        AA["getColor(value)"]
+        CC[["Retornar
+        colorBands[value].color"]]
+        DD[["Retornar
+        NULL"]]
+        FF{"0 ≤ exponent &lt; 8?"}
+        EE["getMultiplierColor(exponent)"]
+        GG[["Retornar
+        multiplierBands[exponent].color"]]
+        HH[["Retornar
+        NULL"]]
+  end
+    A["Inicio"] --> B["Declarar variables"]
+    B --> C{{"Mostrar mensaje: Introducir valor
+    de resistencia"}}
+    C --> D[/"Leer resistance"/]
+    D --> E{"¿Lectura válida?"}
+    E -- No --> F{{"Mostrar: Entrada inválida"}}
+    F --> G["Limpiar buffer"]
+    G --> C
+    E -- Sí --> H{"resistance == 0?"}
+    H -- Sí --> I{{"Mostrar: Saliendo..."}}
+    I --> J(("Fin"))
+    H -- No --> K{"MIN_RESISTANCE ≤ 
+    resistance ≤ 
+    MAX_RESISTANCE?"}
+    K -- No --> L{{"Mostrar: Valor
+    fuera de rango"}}
+    L --> C
+    K -- Sí --> M["Calcular firstDigit:
+    resistance / 10^(log10(resistance))"]
+    M --> N["Calcular secondDigit:
+    (resistance / 10^(log10(resistance)-1)) % 10"]
+    N --> O["Calcular exponent:
+    log10(resistance) - 1"]
+    O --> P[/"Mostrar valor de
+    resistencia"/]
+    P --> Q[/"Obtener y mostrar
+    color banda 1"/]
+    Q --> R[/"Obtener y mostrar
+    color banda 2"/]
+    R --> S[/"Obtener y mostrar
+    color multiplicador"/]
+    S --> C
+    AA --> BB
+    BB -- Sí --> CC
+    BB -- No --> DD
+    EE --> FF
+    FF -- Sí --> GG
+    FF -- No --> HH
